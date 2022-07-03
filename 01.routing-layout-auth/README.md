@@ -1,38 +1,26 @@
-# create-svelte
+## 0. 목표
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+### 0.1 SvelteKit Routing 개념 이해
+### 0.2 간단한 로그인 구현 및 Layout 이용해 역할별 접근 가능한 페이지 구성 해보기
+### 0.3 TypeScript, Svelte 사용법 배워보기
 
-## Creating a project
+## 1. 배운것
 
-If you're seeing this, you've probably already done this step. Congrats!
+### 1.1 import 참조경로 간결하게 (Alias)
 
-```bash
-# create a new project in the current directory
-npm init svelte
+tsconfig.json의 compilerOptions paths를 수정하면 '../../../lib'를 `'$lib'`로 참조할 수 있다.
 
-# create a new project in my-app
-npm init svelte my-app
+```json
+...
+"compilerOptions": {
+    ...
+    "paths": {
+        "$lib": ["src/lib"],
+        "$lib/*": ["src/lib/*"],
+        ...
+    }
+}
 ```
 
-## Developing
+## 2. 
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.

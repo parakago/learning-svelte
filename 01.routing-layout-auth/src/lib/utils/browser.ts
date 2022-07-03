@@ -1,4 +1,8 @@
+/**
+ * Browser
+ */
 export class Browser {
+	/** Creates a cookie */
 	static setCookie(name: string, value: string): void {
         const argc = arguments.length,
             expires: Date = (argc > 2) ? arguments[2] : null,
@@ -14,6 +18,7 @@ export class Browser {
 			((secure === true) ? "; secure" : "");
 	}
 
+	/** Retrieves cookies */
 	static getCookie(name: string): string | null {
 		let value: string | null = null;
 		document.cookie.split(';').forEach((part) => {
@@ -26,11 +31,17 @@ export class Browser {
 		return value;
 	}
 
+	/** Replaces the current resource with the provided path */
 	static redirect(path: string): void {
 		document.location.replace(path);
 	}
 
+	/** Reloads the current URL */
 	static refresh(): void {
 		document.location.reload();
+	}
+
+	static goBack(): void {
+		window.history.back();
 	}
 }

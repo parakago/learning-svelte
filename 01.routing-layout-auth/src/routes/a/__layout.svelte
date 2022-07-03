@@ -1,6 +1,6 @@
 <script  lang="ts">
+import { Browser } from '$lib/utils/browser';
 import { onMount } from "svelte";
-import { Browser } from "../../utils/browser";
 
 let uid: string | null;
 onMount(async () => {

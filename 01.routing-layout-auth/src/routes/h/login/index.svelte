@@ -1,18 +1,10 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-import { Browser } from '../../../utils/browser';
-import { LoginStatus } from '../../../types/common'
+import { Browser } from '$lib/utils/browser';
+import { LoginStatus } from '$lib/types/loginStatus'
 
 onMount(async () => {
-    const loginStatus = await new Promise<LoginStatus>((resolve, reject) => {
-        setTimeout(() => {
-            const uid = Browser.getCookie('loginUid');
-            if (uid == null || uid.length == 0)
-                resolve(LoginStatus.ANON);
-            else
-                resolve(new LoginStatus(uid));
-        }, 500);
-	});
+    const loginStatus = await LoginStatus.get();
     
     if (loginStatus.isLogin()) {
         location.replace('/');
@@ -26,8 +18,9 @@ let uid: string, pwd: string;
 
 const handleSubmit = () => {
     if (uid == 'admin' || uid == 'user') {
-        Browser.setCookie('loginUid', uid);
-        Browser.redirect('/');
+        LoginStatus.set(uid).then(() => {
+            Browser.redirect('/');
+        });
     } else {
         alert('Login Error: admin or user');
     }
