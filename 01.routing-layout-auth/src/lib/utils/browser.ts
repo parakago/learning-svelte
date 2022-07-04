@@ -41,6 +41,7 @@ export class Browser {
 		document.location.reload();
 	}
 
+	/** move back one page in the session history */
 	static goBack(): void {
 		window.history.back();
 	}
